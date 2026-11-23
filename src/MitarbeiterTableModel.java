@@ -20,7 +20,7 @@ public class MitarbeiterTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int col) {
-        return Mitarbeiter.SPALTEN_TABELLE[col];
+        return Mitarbeiter.SPALTEN[col];
     }
 
     @Override
@@ -44,7 +44,7 @@ public class MitarbeiterTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return Mitarbeiter.SPALTEN_TABELLE.length;
+        return Mitarbeiter.SPALTEN.length;
     }
 
     @Override

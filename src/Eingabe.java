@@ -10,9 +10,13 @@ public class Eingabe {
     public static Mitarbeiter anmelden(String[] options, Verwaltung verwaltung, String text, String[] optionsAbt, JFrame frame){
         String [] antworten = new String [options.length];
         for (int i = 1; i < antworten.length; i ++) {
-            if (options[i].equals("Status")) antworten[i] = statusAbfragen(frame);
-            else if (options[i].equals("Abteilung")) antworten[i] = abteilungAbfragen("Welche Abteilung?", optionsAbt, frame);
-            else antworten[i] = JOptionPane.showInputDialog(frame, options[i]);
+            if (options[i].equals("Status")) {
+                antworten[i] = statusAbfragen(frame);
+            } else if (options[i].equals("Abteilung")) {
+                antworten[i] = abteilungAbfragen("Welche Abteilung?", optionsAbt, frame);
+            } else {
+                antworten[i] = JOptionPane.showInputDialog(frame, options[i]);
+            }
         }
 
         String id = String.valueOf(verwaltung.getMaxId() + 1);
@@ -49,7 +53,9 @@ public class Eingabe {
     public static String statusAbfragen(JFrame frame) {
         int antwort = JOptionPane.showConfirmDialog(frame, "Ist der Mitarbeiter anwesend?",
                 "Status", JOptionPane.YES_NO_OPTION);
-        if (antwort == JOptionPane.CLOSED_OPTION) return null;
+        if (antwort == JOptionPane.CLOSED_OPTION) {
+            return null;
+        }
         return String.valueOf(antwort == JOptionPane.YES_OPTION);
     }
 
@@ -74,7 +80,9 @@ public class Eingabe {
         String text;
         text = "Welcher Mitarbeiter möchten Sie ändern? ID angeben bitte:";
         String id = JOptionPane.showInputDialog(frame, text, rowId);
-        if (id == null) return;
+        if (id == null) {
+            return;
+        }
         if (verwaltung.searchMitarbeiter(id) == null) {
             JOptionPane.showMessageDialog(frame, "Die ID " + id + " wurde nicht gefunden.");
             return;
@@ -93,20 +101,31 @@ public class Eingabe {
                 options[1]
         );
         String indexText = (String)aendern1;
-        if (indexText == null) return;
+        if (indexText == null) {
+            return;
+        }
         int index = -1;
         for (int i = 1; i < options.length; i++) {
             if (indexText.equals(options[i])) index = i;
         }
 
         // Dritte Abfrage nach Änderung
-        if (index == -1) return;
+        if (index == -1) {
+            return;
+        }
         String aendern;
         text = "Geben Sie den neuen Wert ein für " + indexText + ":";
-        if (indexText.equals("Status")) aendern = Eingabe.statusAbfragen(frame);
-        else if (indexText.equals("Abteilung")) aendern = Eingabe.abteilungAbfragen("Welche Abteilung?", Abteilung.getAbteilungen(), frame);
-        else aendern = JOptionPane.showInputDialog(frame, text);
-        if (aendern == null) return;
+        if (indexText.equals("Status")) {
+            aendern = Eingabe.statusAbfragen(frame);
+        } else if (indexText.equals("Abteilung")) {
+            aendern = Eingabe.abteilungAbfragen("Welche Abteilung?", Abteilung.getAbteilungen(), frame);
+        } else {
+            aendern = JOptionPane.showInputDialog(frame, text);
+        }
+
+        if (aendern == null) {
+            return;
+        }
 
         // Änderung durchführen (oder nicht)
         if (verwaltung.changeMitarbeiter(id, index, aendern)) {
@@ -120,7 +139,9 @@ public class Eingabe {
     public static void mitarbeiterEntfernen(Verwaltung verwaltung, JFrame frame, String rowId){
         String text = "Welchen Mitarbeiter möchten Sie entfernen? ID angeben bitte:";
         String entfernen = JOptionPane.showInputDialog(frame, text, rowId);
-        if (entfernen == null) return;
+        if (entfernen == null) {
+            return;
+        }
         Mitarbeiter m = verwaltung.searchMitarbeiter(entfernen);
         if (m == null) {
             JOptionPane.showMessageDialog(
@@ -134,7 +155,9 @@ public class Eingabe {
                 name + " wird entfernt. Weitergehen?",
                 "Mitarbeiter löschen bestätigen",
                 JOptionPane.YES_NO_OPTION);
-        if (antwort == JOptionPane.CLOSED_OPTION) return;
+        if (antwort == JOptionPane.CLOSED_OPTION) {
+            return;
+        }
         if (antwort == JOptionPane.NO_OPTION){
             JOptionPane.showMessageDialog(
                     frame,

@@ -8,7 +8,7 @@ import java.awt.event.WindowEvent;
 
 public class Ausgabe {
     // KONSTANTEN
-    String[] options = Mitarbeiter.SPALTEN_TABELLE;
+    String[] options = Mitarbeiter.SPALTEN;
     String text;
 
     // FELDER
@@ -95,9 +95,11 @@ public class Ausgabe {
 
         neuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                text = "Füllen Sie Bitte folgende Felder aus:";
-                Mitarbeiter neu = Eingabe.anmelden(options, verwaltung, text, Abteilung.getAbteilungen(), frame);
-                Eingabe.mitarbeiterHinzufuegen(neu, verwaltung, frame);
+                //text = "Füllen Sie Bitte folgende Felder aus:";
+                //Mitarbeiter neu = Eingabe.anmelden(options, verwaltung, text, Abteilung.getAbteilungen(), frame);
+                //Eingabe.mitarbeiterHinzufuegen(neu, verwaltung, frame);
+                MitarbeiterFormular form = new MitarbeiterFormular();
+                form.zeigen(frame, "Neuer Mitarbeiter erstellen");
                 model.fireTableDataChanged();
             }
         });
@@ -126,7 +128,9 @@ public class Ausgabe {
 
     public String ausgewaehlteId() {
         int row = table.getSelectedRow();
-        if (row == -1) return null;
+        if (row == -1) {
+            return null;
+        }
         return verwaltung.getMitarbeiterListe().get(row).getId();
     }
 

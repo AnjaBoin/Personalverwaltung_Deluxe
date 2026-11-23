@@ -10,7 +10,6 @@ public class Main {
         UIManager.put("ComboBox.font", new Font("SansSerif", Font.PLAIN, 16)); // Dropdown (Abteilung, Felder)
 
         Verwaltung verwaltung = new Verwaltung();
-        System.out.println(new java.io.File("Daten/outputMitarbeiter.txt").getAbsolutePath());
 
         new Ausgabe(verwaltung);
     }

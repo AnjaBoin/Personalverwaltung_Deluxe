@@ -1,4 +1,3 @@
-import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +44,9 @@ public class Verwaltung {
         int maxId = 0;
         List<Mitarbeiter> liste = getMitarbeiterListe();
         for (Mitarbeiter m : liste) {
-            if (Integer.parseInt(m.getId()) > maxId) maxId = Integer.parseInt(m.getId());
+            if (Integer.parseInt(m.getId()) > maxId) {
+                maxId = Integer.parseInt(m.getId());
+            }
         }
         return maxId;
     }
@@ -66,7 +67,9 @@ public class Verwaltung {
     // Mitarbeiter suchen
     public Mitarbeiter searchMitarbeiter(String id) {
         for (Mitarbeiter m : mitarbeiterListe) {
-            if (m.getId().equals(id)) return m;
+            if (m.getId().equals(id)) {
+                return m;
+            }
         }
         return null;
     }
@@ -74,7 +77,9 @@ public class Verwaltung {
     // Nachname vom Mitarbeiter suchen
     public String searchName(String id) {
         for (Mitarbeiter m : mitarbeiterListe) {
-            if (m.getId().equals(id)) return m.getNachname();
+            if (m.getId().equals(id)) {
+                return m.getNachname();
+            }
         }
         return null;
     }
@@ -101,9 +106,11 @@ public class Verwaltung {
     // Mitarbeiterdaten anpassen
     public boolean changeMitarbeiter(String id, int index, String aenderung) {
         Mitarbeiter m = searchMitarbeiter(id);
-        if (m == null) return false;
+        if (m == null) {
+            return false;
+        }
 
-        String feld = Mitarbeiter.SPALTEN_TABELLE[index];
+        String feld = Mitarbeiter.SPALTEN[index];
         try {
             speicher.aendern(m, feld, aenderung);
             switch (index) {

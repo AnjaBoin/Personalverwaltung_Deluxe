@@ -1,4 +1,3 @@
-import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +74,9 @@ public class Speicher {
                 break;
             }
         }
-        if (!gefunden) return false;
+        if (!gefunden) {
+            return false;
+        }
 
         String sqlUpdate = "UPDATE " + DATENBANK + " SET " + feld + " = ? WHERE id = ?";
         try (Connection conn = verbinden();
@@ -94,8 +95,8 @@ public class Speicher {
              ResultSet res = pstmt.executeQuery()
         ) {
             while (res.next()) {
-                String[] werte = new String[Mitarbeiter.SPALTEN_TABELLE.length];
-                for (int i = 0; i < Mitarbeiter.SPALTEN_TABELLE.length; i++) {
+                String[] werte = new String[Mitarbeiter.SPALTEN.length];
+                for (int i = 0; i < Mitarbeiter.SPALTEN.length; i++) {
                     werte[i] = res.getString(i + 1);
                 }
                 liste.add(Mitarbeiter.ausZeile(werte));

@@ -5,11 +5,11 @@ public class Mitarbeiter {
     // Formattierung fuer die Konsolenausgabe
     public static final String FORMAT = "%-4s | %-20s | %-25s | %-8s %-15s | %-12s | %-14s | %-6s | %s";
     // Kopfzeile fuer Ausgabemoeglichkeiten
-    public static final String[] SPALTEN = {"Id, Nachname, Vorname, Adresse, Hausnummer, Plz, Wohnort, Telefon, Geburtsdatum, Status, Abteilung"};
+    public static final String[] SPALTEN_FELDER = {"Id, Nachname, Vorname, Adresse, Hausnummer, Plz, Wohnort, Telefon, Geburtsdatum, Status, Abteilung"};
     // Kopfzeile fuer Methode Drucken (Verwaltung)
     public static final String[] SPALTEN_DRUCKEN = {"Id", "Name", "Adresse", "PLZ", "Wohnort", "Telefon", "Geburtsdatum", "Status", "Abteilung"};
     // Kopfzeile fuer Tabelle
-    public static final String[] SPALTEN_TABELLE = {"Id", "Nachname", "Vorname", "Adresse", "Hausnummer", "Plz", "Wohnort", "Telefon", "Geburtsdatum", "Status", "Abteilung"};
+    public static final String[] SPALTEN = {"Id", "Nachname", "Vorname", "Adresse", "Hausnummer", "Plz", "Wohnort", "Telefon", "Geburtsdatum", "Status", "Abteilung"};
     // Felder fÜr Drop Down Menü
     public static final String [] FELDER_DDMENUE= {"Nachname", "Vorname", "Adresse", "Hausnummer", "Plz", "Wohnort",
             "Telefon", "Geburtsdatum", "Status", "Abteilung"};
@@ -107,8 +107,8 @@ public class Mitarbeiter {
 
     // Status index bestimmen fuer "live" status Anpassungen in der Tabelle
     public static int spaltenIndex(String name) {
-        for (int i = 0; i < SPALTEN_TABELLE.length; i++){
-            if (SPALTEN_TABELLE[i].equals(name)) return i;
+        for (int i = 0; i < SPALTEN.length; i++){
+            if (SPALTEN[i].equals(name)) return i;
         }
         return -1;
     }
